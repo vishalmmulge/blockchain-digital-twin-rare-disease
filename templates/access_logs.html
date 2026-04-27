@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <h1>📋 Access Logs</h1>
+        
+        <div class="info-box">
+            <p><strong>Total Logs:</strong> {{ logs|length }}</p>
+            <p>Complete audit trail of all system activities</p>
+        </div>
+        
+        <h2>All Access Logs</h2>
+        
+        {% if logs %}
+            {% for log in logs %}
+            <div class="log-item">
+                <strong style="color: #667eea;">{{ log.action|upper }}</strong><br>
+                <strong>User:</strong> {{ log.user_id }}<br>
+                <strong>Patient:</strong> {{ log.patient_id }}<br>
+                <strong>Timestamp:</strong> {{ log.timestamp }}<br>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No access logs available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

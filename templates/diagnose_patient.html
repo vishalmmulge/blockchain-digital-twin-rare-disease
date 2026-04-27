@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnose Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <h1>🔬 Patient Diagnosis with ML</h1>
+        
+        <form id="diagnoseForm">
+            <div class="form-group">
+                <label>Patient ID:</label>
+                <input type="text" name="patient_id" placeholder="e.g., PATIENT_004" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Patient Genes (comma-separated):</label>
+                <input type="text" name="genes" placeholder="e.g., KIF7, CWC27" required>
+                <small style="color: #666;">Enter genetic markers found in patient</small>
+            </div>
+            
+            <button type="submit">Diagnose Patient</button>
+        </form>
+        
+        <div id="result"></div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>Complete Diagnosis Process:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>ML model analyzes patient's genetic markers</li>
+                <li>Predicts most likely rare disease</li>
+                <li>Creates digital twin for patient</li>
+                <li>Logs diagnosis on blockchain</li>
+                <li>Generates secure patient record</li>
+            </ol>
+            <p style="margin-top: 15px;"><strong>Privacy:</strong> All data is encrypted and stored securely on blockchain.</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('diagnoseForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = '<div class="info-box">🔄 Running ML diagnosis and creating digital twin...</div>';
+            
+            const response = await fetch('/diagnose_patient', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+            } else if (result.status === 'success') {
+                const pred = result.prediction;
+                let topPredictions = '';
+                
+                if (pred.top_predictions && pred.top_predictions.length > 0) {
+                    topPredictions = '<h4>Alternative Diagnoses:</h4><ul>';
+                    pred.top_predictions.slice(1, 4).forEach(p => {
+                        topPredictions += `<li>${p.disease} (${p.confidence})</li>`;
+                    });
+                    topPredictions += '</ul>';
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h3>✅ Diagnosis Complete</h3>
+                        <hr style="margin: 15px 0;">
+                        
+                        <p><strong>Patient ID:</strong> ${result.patient_id}</p>
+                        
+                        <h4 style="margin-top: 20px;">Primary Diagnosis:</h4>
+                        <p style="font-size: 1.2em; color: #155724;">
+                            <strong>${pred.predicted_disease}</strong>
+                        </p>
+                        <p><strong>Confidence Level:</strong> ${pred.confidence}</p>
+                        
+                        ${topPredictions}
+                        
+                        <h4 style="margin-top: 20px;">Genetic Markers:</h4>
+                        <p>${pred.genes_analyzed.join(', ')}</p>
+                        
+                        <hr style="margin: 20px 0;">
+                        
+                        <div style="background: #d1ecf1; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h4 style="color: #0c5460;">✓ Actions Completed:</h4>
+                            <ul style="margin-left: 20px; color: #0c5460;">
+                                <li>Digital twin created for patient</li>
+                                <li>Diagnosis logged on blockchain</li>
+                                <li>Patient data encrypted and secured</li>
+                                <li>Audit trail recorded</li>
+                            </ul>
+                        </div>
+                        
+                        <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                            <strong>Next Steps:</strong> Use "Manage Access" to grant permissions to healthcare providers.
+                        </p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

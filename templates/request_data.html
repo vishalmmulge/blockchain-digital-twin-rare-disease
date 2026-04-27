@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <h1>📥 Request Patient Data</h1>
+        
+        <form id="requestForm">
+            <div class="form-group">
+                <label>User ID:</label>
+                <input type="text" name="user_id" placeholder="e.g., RESEARCHER_001" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Patient ID:</label>
+                <input type="text" name="patient_id" placeholder="e.g., PATIENT_001" required>
+            </div>
+            
+            <button type="submit">Request Data</button>
+        </form>
+        
+        <div id="result"></div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>Note:</h3>
+            <p>You must have permission to access patient data. Use "Manage Access" to grant permissions first.</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('requestForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            const response = await fetch('/request_data', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+            
+            if (result.status === 'success') {
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <strong>Data Retrieved Successfully!</strong><br><br>
+                        <strong>Medical Data:</strong><br>
+                        ${JSON.stringify(result.data.medical_data, null, 2)}<br><br>
+                        <strong>Genetic Data:</strong><br>
+                        ${JSON.stringify(result.data.genetic_data, null, 2)}
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

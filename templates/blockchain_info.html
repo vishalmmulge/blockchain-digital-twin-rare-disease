@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <h1>⛓️ Blockchain Information</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>{{ info.total_blocks }}</h3>
+                <p>Total Blocks</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ info.total_access_logs }}</h3>
+                <p>Access Logs</p>
+            </div>
+            <div class="stat-card">
+                <h3>{% if is_valid %}✓{% else %}✗{% endif %}</h3>
+                <p>Integrity Status</p>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>Blockchain Status:</h3>
+            <p><strong>Chain Valid:</strong> {{ 'Yes' if info.chain_valid else 'No' }}</p>
+            <p><strong>Integrity Check:</strong> {{ 'PASSED' if is_valid else 'FAILED' }}</p>
+            <p><strong>Security:</strong> SHA-256 Hashing</p>
+            <p><strong>Consensus:</strong> Proof of Authority</p>
+        </div>
+        
+        {% if is_valid %}
+        <div class="success">
+            <strong>✓ Blockchain Integrity Verified</strong><br>
+            No tampering detected. All records are authentic and immutable.
+        </div>
+        {% else %}
+        <div class="error">
+            <strong>✗ Blockchain Integrity Compromised</strong><br>
+            Possible tampering detected. Please investigate immediately.
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

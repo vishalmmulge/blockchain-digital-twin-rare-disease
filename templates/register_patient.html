@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <h1>👤 Register New Patient</h1>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label>Patient ID:</label>
+                <input type="text" name="patient_id" placeholder="e.g., PATIENT_004" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Disease OrphaCode:</label>
+                <input type="number" name="orpha_code" placeholder="e.g., 166024" required>
+            </div>
+            
+            <button type="submit">Register Patient</button>
+        </form>
+        
+        <div id="result"></div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>Sample OrphaCodes:</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>166024 - Multiple epiphyseal dysplasia-macrocephaly-facial dysmorphism syndrome</li>
+                <li>166032 - Multiple epiphyseal dysplasia-miniepiphyses syndrome</li>
+                <li>166035 - Brachydactyly-short stature-retinitis pigmentosa syndrome</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            const response = await fetch('/register_patient', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+            
+            if (result.status === 'success') {
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <strong>Success!</strong><br>
+                        Patient registered with disease: ${result.profile.disease_name}<br>
+                        Genes: ${result.profile.genes.join(', ') || 'None'}
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

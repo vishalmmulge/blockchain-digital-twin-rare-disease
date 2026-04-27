@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Digital Twin System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">
+                <span>🔐</span> MedChain AI
+            </div>
+            <div class="navbar-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('predict_disease') }}">AI Predict</a>
+                <a href="{{ url_for('blockchain_info') }}">Blockchain</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🔐 MedChain AI Platform</h1>
+            <p>Next-Generation Healthcare System powered by Blockchain, Digital Twins, and Artificial Intelligence</p>
+        </div>
+        
+        <!-- Navigation Cards -->
+        <div class="nav-menu">
+            <a href="{{ url_for('dashboard') }}" class="nav-card">
+                <span class="icon">📊</span>
+                <h3>Dashboard</h3>
+                <p>Real-time system analytics and insights</p>
+            </a>
+            
+            <a href="{{ url_for('predict_disease') }}" class="nav-card">
+                <span class="icon">🧬</span>
+                <h3>AI Disease Prediction</h3>
+                <p>Machine learning-powered genetic analysis</p>
+            </a>
+            
+            <a href="{{ url_for('diagnose_patient') }}" class="nav-card">
+                <span class="icon">🔬</span>
+                <h3>Patient Diagnosis</h3>
+                <p>Complete diagnostic workflow with digital twin</p>
+            </a>
+            
+            <a href="{{ url_for('register_patient') }}" class="nav-card">
+                <span class="icon">👤</span>
+                <h3>Patient Registry</h3>
+                <p>Secure patient enrollment system</p>
+            </a>
+            
+            <a href="{{ url_for('manage_access') }}" class="nav-card">
+                <span class="icon">🔑</span>
+                <h3>Access Control</h3>
+                <p>Smart contract permission management</p>
+            </a>
+            
+            <a href="{{ url_for('request_data') }}" class="nav-card">
+                <span class="icon">📥</span>
+                <h3>Data Access</h3>
+                <p>Secure encrypted data retrieval</p>
+            </a>
+            
+            <a href="{{ url_for('blockchain_info') }}" class="nav-card">
+                <span class="icon">⛓️</span>
+                <h3>Blockchain Status</h3>
+                <p>Chain integrity and verification</p>
+            </a>
+            
+            <a href="{{ url_for('access_logs') }}" class="nav-card">
+                <span class="icon">📋</span>
+                <h3>Audit Trail</h3>
+                <p>Complete activity logs and history</p>
+            </a>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3>🔐 Blockchain Security</h3>
+                <ul>
+                    <li>Immutable medical records</li>
+                    <li>SHA-256 cryptographic hashing</li>
+                    <li>Tamper-proof audit trail</li>
+                    <li>Decentralized trust</li>
+                </ul>
+            </div>
+            
+            <div class="feature-item">
+                <h3>🤖 AI-Powered Analysis</h3>
+                <ul>
+                    <li>4,552 genetic markers</li>
+                    <li>4,128 rare diseases</li>
+                    <li>Sub-second predictions</li>
+                    <li>Confidence scoring</li>
+                </ul>
+            </div>
+            
+            <div class="feature-item">
+                <h3>🛡️ Privacy & Compliance</h3>
+                <ul>
+                    <li>End-to-end encryption</li>
+                    <li>Data anonymization</li>
+                    <li>HIPAA/GDPR compliant</li>
+                    <li>Smart contract access</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MedChain AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">
+                <span>🔐</span> MedChain AI
+            </div>
+            <div class="navbar-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('predict_disease') }}">AI Predict</a>
+                <a href="{{ url_for('blockchain_info') }}">Blockchain</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Home</a>
+        
+        <div class="hero">
+            <h1>📊 System Dashboard</h1>
+            <p>Real-time monitoring and analytics</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>{{ info.total_blocks }}</h3>
+                <p>Blockchain Blocks</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ info.total_access_logs }}</h3>
+                <p>Access Events</p>
+            </div>
+            <div class="stat-card">
+                <h3>{% if info.chain_valid %}✓{% else %}✗{% endif %}</h3>
+                <p>Chain Integrity</p>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <h2 style="color: #0ea5e9; margin-bottom: 1.5rem;">📝 Recent Activity</h2>
+            {% if logs %}
+                {% for log in logs[-5:] %}
+                <div class="log-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: #0ea5e9; font-size: 1.1rem;">{{ log.action|upper }}</strong><br>
+                            <span style="color: #64748b;">User: <strong>{{ log.user_id }}</strong> | Patient: <strong>{{ log.patient_id }}</strong></span>
+                        </div>
+                        <div style="text-align: right; color: #94a3b8; font-size: 0.875rem;">
+                            {{ log.timestamp }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="info-box">
+                    <p style="text-align: center; margin: 0;">📊 No activity logs yet. Start by registering a patient or making a prediction.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
