@@ -88,30 +88,30 @@ Patient Registration → ML Diagnosis → Access Control → Data Sharing → Bl
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     WEB INTERFACE (Flask)                    │
-│                    http://localhost:5000                     │
+│                     WEB INTERFACE (Flask)                   │
+│                    http://localhost:5000                    │
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                    MAIN SYSTEM LAYER                         │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Blockchain  │  │ Digital Twin │  │   ML Model   │     │
-│  │   Manager    │  │   Manager    │  │   Engine     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│                    MAIN SYSTEM LAYER                        │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │  Blockchain  │  │ Digital Twin │  │   ML Model   │       │
+│  │   Manager    │  │   Manager    │  │   Engine     │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                    CORE COMPONENTS                           │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │  Blockchain  │  │Smart Contract│  │Privacy Layer │     │
-│  │    Chain     │  │Access Control│  │  Encryption  │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│                    CORE COMPONENTS                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │  Blockchain  │  │Smart Contract│  │Privacy Layer │       │
+│  │    Chain     │  │Access Control│  │  Encryption  │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
-│                      DATA LAYER                              │
-│         Rare Disease Dataset (11,456 diseases)               │
-│         Gene Database (4,552 genes)                          │
+│                      DATA LAYER                             │
+│         Rare Disease Dataset (11,456 diseases)              │
+│         Gene Database (4,552 genes)                         │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -429,11 +429,11 @@ for each input_gene:
 
 #### Sample Predictions
 
-| Input Genes | Predicted Disease | Confidence |
-|-------------|------------------|------------|
-| KIF7 | Multiple epiphyseal dysplasia-macrocephaly-facial dysmorphism syndrome | 100% |
-| CWC27 | Brachydactyly-short stature-retinitis pigmentosa syndrome | 100% |
-| KIF7, CWC27 | Multiple predictions | 85-95% |
+| Input Genes | Predicted Disease                                                      | Confidence |
+|-------------|------------------------------------------------------------------------|------------|
+| KIF7        | Multiple epiphyseal dysplasia-macrocephaly-facial dysmorphism syndrome | 100%       |
+| CWC27       | Brachydactyly-short stature-retinitis pigmentosa syndrome              | 100%       |
+| KIF7, CWC27 | Multiple predictions                                                   | 85-95%     |
 
 ---
 
@@ -549,10 +549,10 @@ rare_diseases_genes.csv:
 ```
 
 **Sample Data**:
-| OrphaCode | Disease Name | Gene | Association |
-|-----------|-------------|------|-------------|
-| 166024 | Multiple epiphyseal dysplasia-macrocephaly-facial dysmorphism syndrome | KIF7 | Disease-causing germline mutation |
-| 166032 | Multiple epiphyseal dysplasia-miniepiphyses syndrome | Multiple | Assessed |
+| OrphaCode |                      Disease Name                                      |   Gene   |         Association               |
+|-----------|------------------------------------------------------------------------|----------|-----------------------------------|
+| 166024    | Multiple epiphyseal dysplasia-macrocephaly-facial dysmorphism syndrome |   KIF7   | Disease-causing germline mutation |
+| 166032    | Multiple epiphyseal dysplasia-miniepiphyses syndrome                   | Multiple |             Assessed              |
 
 ---
 
