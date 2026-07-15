@@ -726,7 +726,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **VISHAL M MULGE** - *Initial work* - [MyGitHub](https://github.com/vishalmmulge)
 
 ---
 
@@ -741,9 +741,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **LinkedIn**: [Your Name](https://linkedin.com/in/yourprofile)
+- **Email**: vishalmulge651@gmail.com
+- **GitHub**: [@vishalmmulge](https://github.com/vishalmmulge)
+- **LinkedIn**: [Vishal M Mulge](https://www.linkedin.com/in/vishal-m-mulge/)
 
 ---
 
